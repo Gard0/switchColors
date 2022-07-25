@@ -1,0 +1,21 @@
+function countColoredCells(countRange, colorRef, rangeSum) {
+
+  var activeRange = SpreadsheetApp.getActiveRange();
+  var activeSheet = activeRange.getSheet();
+  var range = activeSheet.getRange(countRange);
+  var rangeHeight = range.getHeight();
+  var rangeWidth = range.getWidth();
+
+  var background = range.getBackgrounds();
+  var colorCell = activeSheet.getRange(colorRef);
+  var color = colorCell.getBackground();
+
+  var count = 0;
+
+  for (let i = 0; i < rangeHeight; i++)
+    for (let j = 0; j < rangeWidth; j++)
+      if (background[i][j] == color)
+        count = count + 1;
+  return count;
+}
+
